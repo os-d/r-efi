@@ -146,14 +146,14 @@ pub const RESET_PLATFORM_SPECIFIC: ResetType = 0x00000003;
 //
 
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 pub union CapsuleBlockDescriptorUnion {
     pub data_block: crate::base::PhysicalAddress,
     pub continuation_pointer: crate::base::PhysicalAddress,
 }
 
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 pub struct CapsuleBlockDescriptor {
     pub length: u64,
     pub data: CapsuleBlockDescriptorUnion,
@@ -164,7 +164,7 @@ pub const CAPSULE_FLAGS_POPULATE_SYSTEM_TABLE: u32 = 0x00020000u32;
 pub const CAPSULE_FLAGS_INITIATE_RESET: u32 = 0x00040000u32;
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct CapsuleHeader {
     pub capsule_guid: crate::base::Guid,
     pub header_size: u32,
@@ -190,7 +190,7 @@ pub const CAPSULE_REPORT_GUID: crate::base::Guid = crate::base::Guid::from_field
 );
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct CapsuleResultVariableHeader {
     pub variable_total_size: u32,
     pub reserved: u32,
@@ -200,7 +200,7 @@ pub struct CapsuleResultVariableHeader {
 }
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct CapsuleResultVariableFMP<const N: usize = 0> {
     pub version: u16,
     pub payload_index: u8,
@@ -371,7 +371,7 @@ pub const MEMORY_ATTRIBUTE_MASK: u64 = MEMORY_ACCESS_MASK | MEMORY_SP | MEMORY_C
 pub const MEMORY_DESCRIPTOR_VERSION: u32 = 0x00000001u32;
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct MemoryDescriptor {
     pub r#type: u32,
     pub physical_start: crate::base::PhysicalAddress,
@@ -423,7 +423,7 @@ pub struct OpenProtocolInformationEntry {
 //
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct ConfigurationTable {
     pub vendor_guid: crate::base::Guid,
     pub vendor_table: *mut core::ffi::c_void,
@@ -456,7 +456,7 @@ pub const RT_SUPPORTED_QUERY_CAPSULE_CAPABILITIES: u32 = 0x00001000;
 pub const RT_SUPPORTED_QUERY_VARIABLE_INFO: u32 = 0x00002000;
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct RtPropertiesTable {
     pub version: u16,
     pub length: u16,
@@ -477,7 +477,7 @@ pub const PROPERTIES_TABLE_VERSION: u32 = 0x00010000u32;
 pub const PROPERTIES_RUNTIME_MEMORY_PROTECTION_NON_EXECUTABLE_PE_DATA: u64 = 0x1u64;
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct PropertiesTable {
     pub version: u32,
     pub length: u32,
@@ -496,7 +496,7 @@ pub const MEMORY_ATTRIBUTES_TABLE_GUID: crate::base::Guid = crate::base::Guid::f
 pub const MEMORY_ATTRIBUTES_TABLE_VERSION: u32 = 0x00000001u32;
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct MemoryAttributesTable<const N: usize = 0> {
     pub version: u32,
     pub number_of_entries: u32,
@@ -526,7 +526,7 @@ pub const CONFORMANCE_PROFILES_UEFI_SPEC_GUID: crate::base::Guid = crate::base::
 );
 
 #[repr(C)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Debug)]
 pub struct ConformanceProfilesTable<const N: usize = 0> {
     pub version: u16,
     pub number_of_profiles: u16,
